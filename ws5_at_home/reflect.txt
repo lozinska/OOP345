@@ -1,0 +1,48 @@
+In this workshop i have learned how to use function object and the lambda expression
+I have learned the difference between them. If we don't need to reuse function object 
+we can just use lambda expression. It is an anonymus function nested within another function. 
+I have also learned how to handle exception and reporting an errors. In order to handle errors 
+first we need to throw an exception in side of our function or create a function that will check our values 
+and report(throw) an error when conditions are not satisfied. After that we try to catch this exception in our code. 
+List of errors that been reported:
+Check if the number of elements received in the constructor is not negative
+
+  KVList(int n) {
+      if (n < 0) {
+        throw "Not positive number";
+      }
+      if (n > 0) {
+        number = n;
+        objects = new T[number];
+      }
+
+    }
+
+The index pass to the subscribing operator is out of bounds
+
+  const T& operator[](size_t i)const {
+      if (i<0 || i>number) {
+        throw "Out of bound";
+      }
+      return objects[i];
+    }
+In this program everything was executed normally because the files were not empty and it did not 
+throw any exception. In my main code i try{} and catch {} the part of the code where
+
+the list are created because after list created we can check for the presents of the negative 
+value that can be passed to the constructor. Same apply to the index. We use this index inside of the pushBack
+function and we use his function in the createList() function. I have also check for the value that represent incoming grade 
+if the value is positive if not it will exit the function with an error code (2). Also I add exit (3) if the file that been read is empty.
+
+   if (i < 0)
+      {
+        exit(2);
+      }
+
+if (!file) {
+    L list(0);
+    return std::move(list);
+    exit(3);
+  }
+
+
