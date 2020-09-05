@@ -1,0 +1,27 @@
+Krystyna Lopez
+Q1:
+The difference between internal and external linkage using examples from your code
+
+Answer1: 
+In this code we use external and internal linkage. External linkage we use within all the translation units where we declare this external linkage.
+In our code we define "const int INITIAL=3 ;" in our w1.cpp and than we use external linkage to refer to INITIAL from the other
+translate unit, in our code this external linkage is declare in the String.cpp as "external const int INITIAL". Internal linkage is only
+visible with its translate unit to all of the function within, but invisible to the other translate units. In our code it is "static int i=INITIAL;"
+We use this internal linkage to do iteration in one of our function (helper non-friend operator).
+
+Q2:
+The execution effect of the code in the process() function that creates the String object which is inserted into standard output 
+(which member function(s) does this code call)
+
+Answer2:
+This code calls one argument constructor of the class String.
+
+Q3:
+The changes that you made in upgrading your String class.
+
+Answer3:
+In order for the class String to manage a C-style null terminated string of any length I declare a pointer to an array of characters as a member 
+of a class String (instead of an array of characters with pre-define size). And in my constructor I check the length of the input string and dynamically 
+allocate enough memory to fit in the input string (length+1, +1 is an extra byte in order for string to terminate). 
+I aslo add destructor that destroy the object when it is going out of scope and dealocate the dynamic memory 
+that was used for the array of characters.

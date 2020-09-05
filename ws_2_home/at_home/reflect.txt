@@ -1,0 +1,81 @@
+In this workshop i have learned how to monitor the time spent on a particular task using the 
+std::chrono library. Through creating module Timekeeper i have learned how to start and stop 
+stopwatch for an event.
+
+void Timekeeper::start() {
+    str_time = std::chrono::steady_clock::now();
+  }
+ I have learned how to implement move semantics for a class with a resources and what are
+the benefits of it. In our code we have to write copy constructor and copy assignment operator and also move constructor
+and move assignment operator. Through this copy and move semantics i was able to see efficientcy of using move semantics over
+copy semantics. When we use move constructor and move assignment operators we manipulate with the addresses than actual values.
+In the buffer we just change the address of the variable but do not make a copy of it. This way our code not just efficient but also
+much faster than using copy semantics because they copy all the values and if we have big data our run time will significantly slow down
+We can use move semantics only with objects that are near to the end time.
+In our code we use dynamic allocation of addresses to objects instead 
+of objects themselves because when we allocate object itself we use the static memory and we must know the exact size that we will use .
+
+ std::string* new_string = nullptr;
+ new_string = new std::string[noString];
+In this case we probably will may be use some extra memory that we don't need but it will slow down the RAM. With dynamic memory we can allocate 
+storage space  while the program running. This way we can use memory more efficient when we need and how much we need. With dynamic memory compiler 
+does not need to know exact ammount of space or number of items in advance. With dynamic memory we have to deallocate the memory. This way we have 
+control over the memory and deallocate it when we need it.
+In this program we read lines from the file and create a new file. It is very hard to know the number of lines ahead that's why first we find the number of rows
+and then dynamically allocate memory on the heap
+if (!str.empty()) {
+      std::string line;
+      std::ifstream myfile(str);
+
+      while (std::getline(myfile, line))
+      {
+        noString++;
+      }
+
+      new_string = new std::string[noString];
+      myfile.clear();
+In the Timekeeper module we need to assighn description to a message member of the anonymus struct.
+We use dynamic allocation of addresses because this way we can swap addresses while the value that store in that addresses remain unchanged.
+(we must use const in order to work correct)
+void Timekeeper::recordEvent(const char* description) {
+
+    record[num_of_records].message = description;
+    record[num_of_records].time_unit = "seconds";
+    record[num_of_records].duration = end_time - str_time;
+Changes that have been done in home part is: add move constructor and move assignment operator.
+
+Quiz reflection
+
+Question:
+
+6 (5) Complete and upgrade the following template definition to manage a List containing an array of any type and of size max. Let the type default to a long and the size default to 100:
+	template <                                      >
+	class List {
+          int a[max]{};
+          int no {0}; 
+        public:
+          int& operator[](int i) { return a[i]; }
+          int operator[](int i) const { return a[i]; }
+      };
+
+Wrong:
+6 (5) Complete and upgrade the following template definition to manage a List containing an array of any type and of size max. Let the type default to a long and the size default to 100:
+	template <  typename T=long, int max=100   >
+	class List {
+          T a[max]{};
+          T no {0}; 
+        public:
+          T& operator[](int i) { return a[i]; }
+          T operator[](int i) const { return a[i]; }
+      };
+
+Correct:
+6 (5) Complete and upgrade the following template definition to manage a List containing an array of any type and of size max. Let the type default to a long and the size default to 100:
+	template <  typename T=long, int max=100   >
+	class List {
+          T a[max]{};
+          int no {0}; 
+        public:
+          T& operator[](int i) { return a[i]; }
+          T operator[](int i) const { return a[i]; }
+      };
