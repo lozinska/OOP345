@@ -1,0 +1,31 @@
+In this workshopi have learned how to process partioned data on the threads. In our function we are using thread
+ 
+  void SecureData::code(char key) {
+    const int NT = 4;
+    //create a vector of threads
+    //
+    std::vector<std::thread> threads;
+    for(int i=1;i<=NT;i++)
+   threads.push_back(std::thread(converter, text, key, nbytes*(i/NT), Cryptor()));
+   
+
+    //join the thread
+    //
+    for (auto& thread : threads)
+      thread.join();
+ encoded = !encoded;
+  }
+
+I created a vector of threads in this function. And i'm passing 
+as one of the arguments nbytes split by 4 parts, as i have 4 threads. This way i read data partially from the text using different 
+threads that except partial data from the text
+I have learned how to read and write a set of characters to and from binary files, using function READ() and WRITE() that are
+predefine functions. 
+
+  fout.write(text, nbytes);
+  fin.read(text, nbytes);
+Also in this workshop we have covered how to bind a function to its arguments. This was done when we use threads and pass the function to the thread.
+In our workshop we pass the function with arguments and we bind them to the function.
+
+    std::thread t(converter, text, key, nbytes, Cryptor());
+where converter is a function and text, key, nbytes, Cryptor() are arguments of this function.
