@@ -1,0 +1,34 @@
+In this workshop I have learned how to use STL containers and their advantages.
+In this workshop I have used vector because vector class template define classes 
+that manage data structures that can change in size. This mean that vector is a dynamically 
+allocated container. Also if we have a large amount of data it would corrupting all free memory
+if we would use statically allocated arrays.
+We don't have to deallocate memory in this code because std::vector does it for us. As soon as an std::vector
+go out of scope it cleans up after itself. std::vector manage the memory and this memory is of pointers, not objects.
+Range base for simplify coding because we don't need to overload the operator<<in order to display 
+our object we can just use range base and go through the functions that return elements of the object. 
+for (auto i : product) {
+      i->display(os);
+      sum += i->price();
+    }
+It's also simplify our for loop in case we don't know how many elements in the loop.
+
+Quiz 6 reflection:
+1 (3) The algorithms category of the STL consists of the following three libraries:
+Wrong: Queries,Modifiers,Manipulators
+Correct:Algorithm, functional, numeric
+4 (1) The ______________ function templates of the STL perform programmer-specified operations on the elements of a sequential container. 
+Wrong: operators
+Correct: Transform
+6 (2) Write a program that reads the first 10 bytes from a binary file named file and displays them on standard output: 
+#include <iostream>
+#include <fstream>
+
+
+int main() {
+std::ifstream file("file",std::ios::in|std::ios::binary)
+char input[10];
+file.read(input,10);
+for(int i;i<10;i++)
+std::cout<<input[i]<<std::endl;
+}
