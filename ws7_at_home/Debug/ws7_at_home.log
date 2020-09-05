@@ -1,0 +1,41 @@
+﻿  w7.cpp
+c:\users\krystyna\documents\3_semester\oop345\workshops\ws7_at_home\datatable.h(68): warning C4244: '=': conversion from '_Ty' to 'T', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              T=float
+          ]
+  c:\users\krystyna\documents\3_semester\oop345\workshops\ws7_at_home\datatable.h(35): note: while compiling class template member function 'sict::DataTable<float>::DataTable(std::ifstream &)'
+  c:\users\krystyna\documents\3_semester\oop345\workshops\ws7_at_home\w7.cpp(31): note: see reference to function template instantiation 'sict::DataTable<float>::DataTable(std::ifstream &)' being compiled
+  c:\users\krystyna\documents\3_semester\oop345\workshops\ws7_at_home\w7.cpp(31): note: see reference to class template instantiation 'sict::DataTable<float>' being compiled
+c:\users\krystyna\documents\3_semester\oop345\workshops\ws7_at_home\datatable.h(69): warning C4244: '=': conversion from '_Ty' to 'T', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              T=float
+          ]
+c:\users\krystyna\documents\3_semester\oop345\workshops\ws7_at_home\datatable.h(70): warning C4244: '=': conversion from '_Ty' to 'T', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              T=float
+          ]
+c:\users\krystyna\documents\3_semester\oop345\workshops\ws7_at_home\datatable.h(71): warning C4244: '=': conversion from '_Ty' to 'T', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              T=float
+          ]
+  ws7_at_home.vcxproj -> C:\Users\Krystyna\Documents\3_semester\OOP345\workshops\ws7_at_home\Debug\ws7_at_home.exe

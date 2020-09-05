@@ -1,0 +1,29 @@
+In this workshop I have learned how to use numeric libraries for accumulating data
+how to apply lambda expressions to specify an operation on each value in a data set
+and also how to use algorithm library to sort data values.
+In this workshop i have used vector as my container that stores data from the file. 
+I choose to use vectors because they are expandable in size, we don't need to think about the
+size of the vector, particulary when we don't know how many ellements we will need to store in the 
+vector and its store data sequencialy. Storing data sequentially is important specially when we calculating
+statistics information, which was the task in this workshop.I have used lambda expression in the sort function
+to specify how the items in the container need to be sorted.
+      std::sort(copy.begin(), copy.end(), [](T i, T j) {return i < j; });
+I also have used lambda expression to calculate the sum of y values minus mean.
+      t = std::accumulate(y.begin(), y.end(), (T)0,
+        [=](T x, T y) { return x + (y-mean) * (y-mean); });
+
+I have also used  following templates to calculate values
+- sort
+- accumulate
+- inner_product
+By using this templates its make programming easier because there are already define functions that calculate all the 
+neccessary sums for calculating statistical information. Using this templates cuts on using for loops in our code.
+
+Quiz 7
+2 (1) Adding 2 to a pointer that holds the address to a double changes that address by _________ bytes: 
+Wrong answer 2
+Correct answer :16 bytes
+
+3 (1) The result of subtracting address &a[3] from address &a[5] where variable a has been defined as int a[10] is ____________. 
+Wrong answer &a[2] 
+Correct answer : 2
