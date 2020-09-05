@@ -1,0 +1,82 @@
+In this workshop I have learned how to design and implement composition and aggregation. i have learned the difference between them.
+In Composition there is no way to know about the existence of the component. Composition 
+is responsible for creation and destroying of its own component. Composer has an exclusive access to its component. This mean that
+composer will not generally share reference to it's component object with client's code.
+Default constructor will create new component object. 
+ MessagePack::MessagePack(Message** msg, int numEl) {
+
+    if (numEl > 0&&msg!=nullptr) {
+     message = new Message[numEl];
+     for (int i = 0; i < numEl; i++) {
+       if (!msg[i]->empty()) {
+         message[i] = *msg[i];
+         num++;
+       }
+    }
+    }
+A constructors that have component object parameter must first deep copy and then validate the object.
+Copy constructor as well must create a deep copy of the component otherwise it will cause privacy leak. Component at the same time can not exist with out the composer.
+  MessagePack& MessagePack:: operator=(const MessagePack& msgPk) {
+    if (this != &msgPk) {
+      delete[] message;
+      num = msgPk.num;
+      message = new Message(*msgPk.message);
+  }
+    return *this;
+  };
+Updates to the component class affect the composer class. In the aggregation the agregator is not responsible for creating or destroying 
+the objec. Agregation is complete either or not any of the object that it uses exist. In aggregation constructor does not make a new copy of the object pass to it. The object is shared 
+with client code.
+With the move constructor and assignment operators the way they work is that they do not make copies 
+move object from one location to another. This is basically manipulation of addresses for the objects that are nearly to the end of it's
+lifetime. In composition when we call the copy constructor we move pointer component to another object so as the same way with the aggregation class
+    Notifications backup = std::move(notifications);
+  MessagePack pack_2 = std::move(pack_1);
+
+  Notifications::Notifications(Notifications&& note) {
+    *this = std::move(note);
+  };
+
+  MessagePack::MessagePack(MessagePack&& msgPk) {
+    *this = std::move(msgPk);
+  }
+
+Quiz 4 reflection
+
+4 (2) The following code defines a function object that receives an int, adds a pre-defined value to that int and returns the result of the addition. Complete the code: 
+Wrong answer:
+Class Add {
+    int predefinedValue;
+public:
+    Add(int a) : predefined(a) {}
+    Add<int>& { return x + predefined; }
+};
+
+Correct answer:
+Class Add {
+    int predefinedValue;
+public:
+    Add(int a) : predefined(a) {}
+    int operator()(int x)const{ return x + predefined; }
+};
+
+6 (2) The function foo() in the following code throws exceptions if it encounters an exception to normal execution. Complete the code to trap any exception that foo() throws in the form of a C-style null-terminated string and print the message:
+
+Wrong answer:
+#include <iostream>
+int main() {
+
+	foo();
+try{foo();}
+catch(std::string){std::cout<<"error";}
+}
+
+Correct Answer:
+#include <iostream>
+int main() {
+
+	foo();
+try{foo();}
+catch(const char* msg){std::cout<<"msg";}
+
+}
