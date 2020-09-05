@@ -1,0 +1,52 @@
+In this workshop I have learned the difference between raw and 
+smart pointers and what is the different syntax they have. The raw pointer
+after using them has to be deleted otherwise the memory leak will occure
+  Product* temp(new Product(desc[i].desc, price[j].price));
+          temp->validate();
+          priceList += temp;
+          delete temp;
+          temp = nullptr;
+Especially problem arise when the exception has been thrown.
+
+While smart pointer does not required that operation. They by default clean up after 
+themselves
+f (desc[i].code == price[j].code) {
+          std:unique_ptr<Product> p(new Product(desc[i].desc, price[j].price));
+          p->validate();
+          priceList +=std::move(p);
+Smart pointer design include: automatic initialization, safe exception handling and 
+automatic destruction of the owned object at the appropriate time. Before the smart pointer 
+goes out of scope it makes sure that it destruct the object when it itself goes 
+out ofscope.
+Advantages of the smart pointer is that they owned the object and taking care about all the memory allocation and 
+deleting. It is safe to throw exception with smart pointers because they will not cause memory leaks. And smart pointer 
+ has automatic initialization.
+
+Quiz 8
+4 (1) What do a promise and a future have in common:
+Wrong answer: copy constructor and copy assignment operator are deleted.
+Correct answer: shared state.
+7 (3) Complete the following program to execute the function foo once on the master thread and once on a spawned thread:
+
+Wrong answer:
+
+#include<iostream>
+#include<thread>
+void foo(){ std::cout << “345\n\n”; }
+
+int main() {
+std::thread t(foo);
+std::cout<<foo()<<std::endl;
+t.join();
+
+Correct answer:
+
+#include<iostream>
+#include<thread>
+void foo(){ std::cout << “345\n\n”; }
+
+int main() {
+std::thread t(foo);
+foo();
+t.join();
+
